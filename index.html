@@ -4,165 +4,590 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Devin Judson | CS-499 ePortfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary-color: #0f172a;
+      --accent-color: #f59e0b;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-accent: #eff6ff;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --gradient-primary: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header Section */
+    .hero {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      font-size: 1.25rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .date {
+      font-size: 1rem;
+      opacity: 0.8;
+      font-weight: 400;
+    }
+
+    /* Navigation */
+    .nav {
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      background: var(--bg-accent);
+    }
+
+    /* Main Content */
+    .main {
+      background: var(--bg-primary);
+      padding: 4rem 0;
+    }
+
+    .section {
+      margin-bottom: 4rem;
       padding: 2rem;
-      max-width: 1000px;
-      background-color: #f4f7fb;
+      background: var(--bg-primary);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
     }
 
-    h1, h2 {
-      color: #1a73e8;
+    .section:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
-    h1 {
-      font-size: 2em;
+    .section h2 {
+      color: var(--primary-color);
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 3rem;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+    }
+
+    .section p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .section p:last-child {
       margin-bottom: 0;
     }
 
-    .date {
-      font-size: 0.9em;
-      color: #555;
+    /* Enhancement Cards */
+    .enhancement-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 2rem;
       margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    hr {
-      margin: 2rem 0;
+    .enhancement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-primary);
     }
 
-    section {
-      margin-bottom: 3rem;
+    .enhancement-card h3 {
+      color: var(--secondary-color);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
 
+    .enhancement-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-item {
+      background: var(--bg-accent);
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Lists */
     ul {
-      margin-top: 0.5rem;
+      list-style: none;
+      padding-left: 0;
     }
 
+    li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+
+    /* Course Outcomes */
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .outcome-card {
+      background: var(--bg-accent);
+      border: 1px solid var(--primary-color);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .outcome-card::before {
+      content: counter(outcome-counter);
+      counter-increment: outcome-counter;
+      position: absolute;
+      top: -0.75rem;
+      left: 1.5rem;
+      background: var(--primary-color);
+      color: white;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .outcomes-grid {
+      counter-reset: outcome-counter;
+    }
+
+    /* Code styling */
     code {
-      background: #eaeaea;
-      padding: 2px 4px;
-      border-radius: 4px;
+      background: var(--bg-secondary);
+      color: var(--secondary-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Video placeholder */
+    .video-placeholder {
+      background: var(--bg-secondary);
+      border: 2px dashed var(--border-color);
+      border-radius: 0.75rem;
+      padding: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      margin: 1.5rem 0;
+    }
+
+    .video-placeholder::before {
+      content: '🎥';
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .hero {
+        padding: 3rem 0;
+      }
+
+      .section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-links a {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .enhancement-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .outcomes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Smooth animations */
+    .section, .enhancement-card, .outcome-card {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      .nav, .hero::before {
+        display: none;
+      }
+      
+      .section {
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+        break-inside: avoid;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>CS-499 ePortfolio</h1>
-  <p class="date">Devin Judson<br>August 13, 2025</p>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>CS-499 ePortfolio</h1>
+        <p class="subtitle">Computer Science Capstone</p>
+        <p class="date">Devin Judson • August 13, 2025</p>
+      </div>
+    </div>
+  </header>
 
-  <hr>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-content">
+        <ul class="nav-links">
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#assessment">Self-Assessment</a></li>
+          <li><a href="#outcomes">Course Outcomes</a></li>
+          <li><a href="#software">Software Design</a></li>
+          <li><a href="#algorithms">Algorithms</a></li>
+          <li><a href="#databases">Databases</a></li>
+          <li><a href="#review">Code Review</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <section>
-    <h2>Introduction</h2>
-    <p>Hello, my name is Devin Judson, and I have been in SNHU's Computer Science degree program since 2021. This ePortfolio marks the culmination of my academic journey through the CS-499 Capstone and highlights the growth, skills, and specialization I have developed as a future full-stack software developer.</p>
-  </section>
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
 
-  <section>
-    <h2>Professional Self-Assessment</h2>
-    <p>Completing the Computer Science program has helped me sharpen my technical, collaborative, and problem-solving abilities. The ePortfolio serves as a comprehensive reflection of this journey, allowing me to demonstrate the progression of my skills through selected and enhanced artifacts.
+      <section id="introduction" class="section">
+        <h2>Introduction</h2>
+        <p>Hello, my name is Devin Judson, and I have been in SNHU's Computer Science degree program since 2021. This ePortfolio marks the culmination of my academic journey through the CS-499 Capstone and highlights the growth, skills, and specialization I have developed as a future full-stack software developer.</p>
+      </section>
 
-Throughout the program, I developed a strong foundation in designing scalable software systems, working with both front-end and back-end technologies. One of my most impactful projects was Travlr Getaways, a full-stack travel management application built with Angular, Node.js, and MongoDB. This project evolved over time and became the foundation for demonstrating all three enhancement categories: software design and engineering, algorithms and data structures, and databases.
+      <section id="assessment" class="section">
+        <h2>Professional Self-Assessment</h2>
+        <p>Completing the Computer Science program has helped me sharpen my technical, collaborative, and problem-solving abilities. The ePortfolio serves as a comprehensive reflection of this journey, allowing me to demonstrate the progression of my skills through selected and enhanced artifacts.</p>
 
-The enhancements I implemented for the capstone included integrating Angular Material components for a professional, accessible UI, improving user input validation logic, and introducing soft-delete functionality to preserve data integrity. These changes elevated the usability, maintainability, and professionalism of the application.
+        <p>Throughout the program, I developed a strong foundation in designing scalable software systems, working with both front-end and back-end technologies. One of my most impactful projects was <strong>Travlr Getaways</strong>, a full-stack travel management application built with Angular, Node.js, and MongoDB. This project evolved over time and became the foundation for demonstrating all three enhancement categories: software design and engineering, algorithms and data structures, and databases.</p>
 
-For algorithms and data structures, I chose a checkers game AI from a prior project. The original logic was functional but limited in strategic depth. I analyzed the decision-making flow and implemented a more robust board evaluation algorithm, enhancing the AI’s competitiveness and showcasing my ability to critically assess and optimize logic using algorithmic principles.
+        <p>The enhancements I implemented for the capstone included integrating Angular Material components for a professional, accessible UI, improving user input validation logic, and introducing soft-delete functionality to preserve data integrity. These changes elevated the usability, maintainability, and professionalism of the application.</p>
 
-My understanding of database systems matured significantly through building CRUD functionality, implementing soft-deletes in MongoDB, and ensuring strong data consistency. By simulating real-world needs for reversible deletions, I learned how to enhance data integrity and user trust in persistent storage systems.
+        <p>For algorithms and data structures, I chose a checkers game AI from a prior project. The original logic was functional but limited in strategic depth. I analyzed the decision-making flow and implemented a more robust board evaluation algorithm, enhancing the AI's competitiveness and showcasing my ability to critically assess and optimize logic using algorithmic principles.</p>
 
-Security and secure coding practices were embedded throughout my capstone enhancements. I paid attention to input sanitization, database validation, and protecting backend routes – practices that are essential in today’s security-focused landscape.
+        <p>My understanding of database systems matured significantly through building CRUD functionality, implementing soft-deletes in MongoDB, and ensuring strong data consistency. By simulating real-world needs for reversible deletions, I learned how to enhance data integrity and user trust in persistent storage systems.</p>
 
-Another key area of growth was team collaboration and communication. By using Git and GitHub throughout the program and especially in the capstone, I became confident in version control workflows, resolving merge conflicts, and providing readable documentation. The ability to translate complex logic into simple explanations and collaborate with peers will be invaluable in a professional setting.
+        <p>Security and secure coding practices were embedded throughout my capstone enhancements. I paid attention to input sanitization, database validation, and protecting backend routes – practices that are essential in today's security-focused landscape.</p>
 
-This ePortfolio reflects my specialization in full-stack development and my aspiration to work in the music tech industry with platforms like Spotify or Apple Music. I am passionate about building tools that enhance creativity, and my skills in web development, algorithms, and system design are aligned with that vision.
+        <p>Another key area of growth was team collaboration and communication. By using Git and GitHub throughout the program and especially in the capstone, I became confident in version control workflows, resolving merge conflicts, and providing readable documentation. The ability to translate complex logic into simple explanations and collaborate with peers will be invaluable in a professional setting.</p>
 
-The following sections contain three artifact enhancement narratives organized by category: Software Design & Engineering, Algorithms & Data Structures, and Databases. Each narrative explains the original project, the enhancements applied, the challenges faced, and the course outcomes achieved. Together, they form a cohesive story of how SNHU's Computer Science program prepared me for a successful career in software development.</p>
-  </section>
+        <p>This ePortfolio reflects my specialization in full-stack development and my aspiration to work in the music tech industry with platforms like Spotify or Apple Music. I am passionate about building tools that enhance creativity, and my skills in web development, algorithms, and system design are aligned with that vision.</p>
 
-  <section>
-    <h2>Course Outcomes</h2>
-    <ul>
-      <li>Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.</li>
-      <li>Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.</li>
-      <li>Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices (data structures and algorithms).</li>
-      <li>Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals (software engineering/design/database).</li>
-      <li>Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.</li>
-    </ul>
-  </section>
+        <p>The following sections contain three artifact enhancement narratives organized by category: Software Design & Engineering, Algorithms & Data Structures, and Databases. Each narrative explains the original project, the enhancements applied, the challenges faced, and the course outcomes achieved. Together, they form a cohesive story of how SNHU's Computer Science program prepared me for a successful career in software development.</p>
+      </section>
 
-  <section>
-    <h2>Software Design and Engineering Enhancement</h2>
-    <p><strong>Artifact:</strong> Travlr Getaways</p>
-    <p><strong>Original Project:</strong> Developed in CS-465 Full-Stack Development</p>
-    <p><strong>Enhancement Summary:</strong> For the CS-499 Capstone, I improved the visual design and user experience by integrating Angular Material components such as mat-card, mat-form-field, and mat-toolbar. This created a more consistent, responsive, and accessible interface. Buttons, input fields, and layout structures were upgraded to professional standards, improving the application's usability on both desktop and mobile.</p>
-    <p><strong>Skills Demonstrated:</strong></p>
-    <ul>
-      <li>Front-end component refactoring using Angular Material</li>
-      <li>Responsive UI/UX design principles</li>
-      <li>Professional styling and accessibility awareness</li>
-    </ul>
-    <p><strong>Learning Reflection:</strong> This enhancement deepened my understanding of Angular component architecture and responsive design. It also taught me to evaluate third-party libraries for scalability and accessibility compliance. I overcame challenges related to module imports, layout responsiveness, and user feedback.</p>
-    <p><strong>Course Outcomes Met:</strong></p>
-    <ul>
-      <li>Design and evaluate computing solutions that solve real-world problems, based on user needs and requirements.</li>
-      <li>Employ strategies for building collaborative environments that enable diverse teams to support organizational decision making in the field of computer science.</li>
-      <li>Develop software systems that integrate security best practices at every stage of the development lifecycle.</li>
-    </ul>
-  </section>
+      <section id="outcomes" class="section">
+        <h2>Course Outcomes</h2>
+        <div class="outcomes-grid">
+          <div class="outcome-card">
+            <p>Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.</p>
+          </div>
+          <div class="outcome-card">
+            <p>Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.</p>
+          </div>
+          <div class="outcome-card">
+            <p>Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices (data structures and algorithms).</p>
+          </div>
+          <div class="outcome-card">
+            <p>Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals (software engineering/design/database).</p>
+          </div>
+          <div class="outcome-card">
+            <p>Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.</p>
+          </div>
+        </div>
+      </section>
 
-  <section>
-    <h2>Algorithms and Data Structures Enhancement</h2>
-    <p><strong>Artifact:</strong> Travlr Getaways</p>
-    <p><strong>Original Project:</strong> Developed in CS-465 Full-Stack Development</p>
-    <p><strong>Enhancement Summary:</strong> I enhanced the filtering and sorting capabilities of the admin dashboard to allow trips to be organized by price, duration, or availability. This was accomplished by implementing custom comparator functions and extending the existing Angular services to support these options. This improved the efficiency of managing listings and provided a better user experience.</p>
-    <p><strong>Skills Demonstrated:</strong></p>
-    <ul>
-      <li>Implementation of client-side sorting and filtering algorithms</li>
-      <li>Optimization of data manipulation in Angular services</li>
-      <li>Improved UX through dynamic data rendering</li>
-    </ul>
-    <p><strong>Learning Reflection:</strong> This enhancement strengthened my ability to design and implement efficient sorting logic and integrate it with a dynamic UI. I learned how to make front-end applications more interactive and responsive to user needs, while keeping performance in mind when dealing with larger data sets.</p>
-    <p><strong>Course Outcomes Met:</strong></p>
-    <ul>
-      <li>Analyze and apply data structures and algorithms to improve performance and maintainability of software.</li>
-      <li>Design and evaluate computing solutions that solve real-world problems, based on user needs and requirements.</li>
-      <li>Communicate clearly and effectively with a range of audiences through technical writing, presentations, and code documentation..</li>
-    </ul>
-  </section>
+      <section id="software" class="section">
+        <h2>Software Design and Engineering Enhancement</h2>
+        <div class="enhancement-card">
+          <div class="enhancement-meta">
+            <span class="meta-item">Travlr Getaways</span>
+            <span class="meta-item">CS-465 Full-Stack Development</span>
+          </div>
+          
+          <h3>Enhancement Summary</h3>
+          <p>For the CS-499 Capstone, I improved the visual design and user experience by integrating Angular Material components such as <code>mat-card</code>, <code>mat-form-field</code>, and <code>mat-toolbar</code>. This created a more consistent, responsive, and accessible interface. Buttons, input fields, and layout structures were upgraded to professional standards, improving the application's usability on both desktop and mobile.</p>
+          
+          <h3>Skills Demonstrated</h3>
+          <ul>
+            <li>Front-end component refactoring using Angular Material</li>
+            <li>Responsive UI/UX design principles</li>
+            <li>Professional styling and accessibility awareness</li>
+          </ul>
+          
+          <h3>Learning Reflection</h3>
+          <p>This enhancement deepened my understanding of Angular component architecture and responsive design. It also taught me to evaluate third-party libraries for scalability and accessibility compliance. I overcame challenges related to module imports, layout responsiveness, and user feedback.</p>
+          
+          <h3>Course Outcomes Met</h3>
+          <ul>
+            <li>Design and evaluate computing solutions that solve real-world problems, based on user needs and requirements.</li>
+            <li>Employ strategies for building collaborative environments that enable diverse teams to support organizational decision making in the field of computer science.</li>
+            <li>Develop software systems that integrate security best practices at every stage of the development lifecycle.</li>
+          </ul>
+        </div>
+      </section>
 
-  <section>
-    <h2>Databases Enhancement</h2>
-    <p><strong>Artifact:</strong> Travlr Getaways</p>
-    <p><strong>Original Project:</strong> Developed in CS-465 Full-Stack Development</p>
-    <p><strong>Enhancement Summary:</strong> I implemented soft-delete functionality for trip records by adding a deleted flag instead of permanently removing documents. This is a critical industry feature to prevent data loss and enable restoration of accidentally removed records.</p>
-    <p><strong>Skills Demonstrated:</strong></p>
-    <ul>
-      <li>Advanced MongoDB query operations</li>
-      <li>Data persistence best practices</li>
-      <li>Simulating production-like data handling patterns</li>
-    </ul>
-    <p><strong>Learning Reflection:</strong> Implementing soft-deletes forced me to rethink how data is queried and displayed. I had to modify all find() and update() queries to ignore soft-deleted items while maintaining backend logic that could restore them. This enhancement aligns with real-world scenarios and improved the overall robustness of the application.</p>
-    <p><strong>Course Outcomes Met:</strong></p>
-    <ul>
-      <li>Analyze and apply data structures and algorithms to improve performance and maintainability of software.</li>
-      <li>Develop software systems that integrate security best practices at every stage of the development lifecycle.</li>
-      <li>Design and evaluate computing solutions that solve real-world problems, based on user needs and requirements.</li>
-    </ul>
-  </section>
+      <section id="algorithms" class="section">
+        <h2>Algorithms and Data Structures Enhancement</h2>
+        <div class="enhancement-card">
+          <div class="enhancement-meta">
+            <span class="meta-item">Travlr Getaways</span>
+            <span class="meta-item">CS-465 Full-Stack Development</span>
+          </div>
+          
+          <h3>Enhancement Summary</h3>
+          <p>I enhanced the filtering and sorting capabilities of the admin dashboard to allow trips to be organized by price, duration, or availability. This was accomplished by implementing custom comparator functions and extending the existing Angular services to support these options. This improved the efficiency of managing listings and provided a better user experience.</p>
+          
+          <h3>Skills Demonstrated</h3>
+          <ul>
+            <li>Implementation of client-side sorting and filtering algorithms</li>
+            <li>Optimization of data manipulation in Angular services</li>
+            <li>Improved UX through dynamic data rendering</li>
+          </ul>
+          
+          <h3>Learning Reflection</h3>
+          <p>This enhancement strengthened my ability to design and implement efficient sorting logic and integrate it with a dynamic UI. I learned how to make front-end applications more interactive and responsive to user needs, while keeping performance in mind when dealing with larger data sets.</p>
+          
+          <h3>Course Outcomes Met</h3>
+          <ul>
+            <li>Analyze and apply data structures and algorithms to improve performance and maintainability of software.</li>
+            <li>Design and evaluate computing solutions that solve real-world problems, based on user needs and requirements.</li>
+            <li>Communicate clearly and effectively with a range of audiences through technical writing, presentations, and code documentation.</li>
+          </ul>
+        </div>
+      </section>
 
-  <section>
-    <h2>Code Review Video</h2>
-    <p>[TODO: Insert video link here]</p>
-    <p>In this screencast, I walk through the original features of Travlr Getaways and the Checkers AI...</p>
-  </section>
+      <section id="databases" class="section">
+        <h2>Databases Enhancement</h2>
+        <div class="enhancement-card">
+          <div class="enhancement-meta">
+            <span class="meta-item">Travlr Getaways</span>
+            <span class="meta-item">CS-465 Full-Stack Development</span>
+          </div>
+          
+          <h3>Enhancement Summary</h3>
+          <p>I implemented soft-delete functionality for trip records by adding a deleted flag instead of permanently removing documents. This is a critical industry feature to prevent data loss and enable restoration of accidentally removed records.</p>
+          
+          <h3>Skills Demonstrated</h3>
+          <ul>
+            <li>Advanced MongoDB query operations</li>
+            <li>Data persistence best practices</li>
+            <li>Simulating production-like data handling patterns</li>
+          </ul>
+          
+          <h3>Learning Reflection</h3>
+          <p>Implementing soft-deletes forced me to rethink how data is queried and displayed. I had to modify all <code>find()</code> and <code>update()</code> queries to ignore soft-deleted items while maintaining backend logic that could restore them. This enhancement aligns with real-world scenarios and improved the overall robustness of the application.</p>
+          
+          <h3>Course Outcomes Met</h3>
+          <ul>
+            <li>Analyze and apply data structures and algorithms to improve performance and maintainability of software.</li>
+            <li>Develop software systems that integrate security best practices at every stage of the development lifecycle.</li>
+            <li>Design and evaluate computing solutions that solve real-world problems, based on user needs and requirements.</li>
+          </ul>
+        </div>
+      </section>
 
-  <section>
-    <h2>Final Thoughts</h2>
-    <p>This ePortfolio reflects not only what I have learned, but who I am becoming as a developer. It represents my commitment to quality, security, and usability. I am excited to bring these values into a professional role and continue growing in the field of software development.</p>
-    <p><em>— Devin Judson | CS-499 Capstone | SNHU Computer Science</em></p>
-  </section>
+      <section id="review" class="section">
+        <h2>Code Review Video</h2>
+        <div class="video-placeholder">
+          <p><strong>Code Review Screencast</strong></p>
+          <p>In this screencast, I walk through the original features of Travlr Getaways and the Checkers AI...</p>
+          <p><em>[TODO: Insert video link here]</em></p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Final Thoughts</h2>
+        <p>This ePortfolio reflects not only what I have learned, but who I am becoming as a developer. It represents my commitment to quality, security, and usability. I am excited to bring these values into a professional role and continue growing in the field of software development.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>— Devin Judson | CS-499 Capstone | SNHU Computer Science —</p>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
