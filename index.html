@@ -11,7 +11,7 @@
       --primary-color: #059669;
       --primary-dark: #047857;
       --secondary-color: #0f172a;
-      --accent-color: #f97316;
+      --accent-color: #dc2626; /* Changed from orange to red accent */
       --text-primary: #0f172a;
       --text-secondary: #64748b;
       --text-muted: #94a3b8;
@@ -23,7 +23,7 @@
       --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
       --gradient-primary: linear-gradient(135deg, #059669 0%, #047857 100%);
-      --gradient-accent: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      --gradient-accent: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); /* Updated gradient to use red */
     }
 
     * {
@@ -87,11 +87,12 @@
       margin-bottom: 0.5rem;
     }
 
-    .hero .date {
+    /* Removed the date line */
+    /* .hero .date {
       font-size: 1rem;
       opacity: 0.8;
       font-weight: 400;
-    }
+    } */
 
     /* Navigation */
     .nav {
@@ -244,7 +245,7 @@
       content: '→';
       position: absolute;
       left: 0;
-      color: var(--accent-color);
+      color: #dc2626; /* Updated arrow color to red */
       font-weight: 600;
     }
 
@@ -401,7 +402,7 @@
       <div class="hero-content">
         <h1>CS-499 ePortfolio</h1>
         <p class="subtitle">Computer Science Capstone</p>
-        <p class="date">Devin Judson • August 13, 2025</p>
+        <!-- Removed the date line -->
       </div>
     </div>
   </header>
@@ -488,6 +489,14 @@
         </div>
         
         <p>The code review demonstrates my ability to critically analyze existing software, identify improvement opportunities, and communicate technical concepts clearly - essential skills for collaborative development environments.</p>
+        
+        <!-- Added download button for original project zip file -->
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+          <a href="original-travlr-project.zip" download style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gradient-primary); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500; transition: all 0.2s ease;">
+            <span>📁</span>
+            Download Original Project Files
+          </a>
+        </div>
       </section>
 
       <section id="software" class="section">
